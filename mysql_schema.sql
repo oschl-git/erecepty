@@ -75,10 +75,10 @@ CREATE TABLE `prescriptions_medicine_map` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
-  `surname` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4_czech_ci NOT NULL,
-  `role` enum('doctor, admin') COLLATE utf8mb4_czech_ci NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
+  `surname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci NOT NULL,
+  `role` enum('doctor','admin') CHARACTER SET utf8mb4 COLLATE utf8mb4_czech_ci DEFAULT NULL,
   `id_medical_institution` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_medical_institution` (`id_medical_institution`),
