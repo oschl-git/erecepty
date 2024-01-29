@@ -1,13 +1,13 @@
 import express from 'express';
-import { getAllUsers } from '../database/userGateway';
+import * as medicalInstitutions from '../database/medicalInstitutionGateway';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    getAllUsers();
+router.get('/', async function (req, res) {
+    console.log(await medicalInstitutions.getAll());
     res.render('home',
         {
-            pageTitle: 'Balls',
+            medicalInstitutions: await medicalInstitutions.getAll(),
         },
     );
 });
