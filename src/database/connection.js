@@ -10,4 +10,11 @@ const connection = mysql.createConnection({
 	database: process.env.DB_NAME,
 });
 
-module.exports = connection;
+async function query(sql, ...parameters) {
+	let result = await connection.promise().query(sql, parameters);
+	return result;
+}
+
+module.exports = {
+	query
+};

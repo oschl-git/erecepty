@@ -2,15 +2,20 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>eRecepty</title>
+  <%- include('./partials/_head'); %>
+  <title>eRecepty</title>
 </head>
 
 <body>
-	<h1>
-		<%= homePageContent %>
-	</h1>
+  <%- include('./partials/_header'); %>
+  <main>
+    <a href="">+ Vystavit nový recept</a><br>
+    <a href="">? Zobrazit vystavené recepty</a><br>
+    <a href="">+ Přidat pacienta</a><br>
+    <a href="/add-institution">+ Přidat lékařskou instituci</a><br>
+    <a href="">+ Přidat lékaře</a><br>
+  </main>
+  <%- include('./partials/_footer'); %>
 </body>
 
 </html>

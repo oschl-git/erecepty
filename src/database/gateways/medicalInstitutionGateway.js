@@ -1,8 +1,7 @@
-const connection = require('../connection');
+const { query } = require('../connection');
 
 async function getAll() {
-	const sql = 'select * from medical_institutions;';
-	const results = await connection.promise().query(sql);
+	const results = await query('select * from medical_institutions;');
 	return results[0];
 }
 
