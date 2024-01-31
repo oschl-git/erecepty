@@ -19,7 +19,7 @@ router.get('/', async function (req, res) {
 
 router.post('/', async function (req, res) {
 	const data = req.body;
-	const errors = getInputErrors(data.name, data.field);
+	const errors = await getInputErrors(data.name, data.field);
 
 	if (errors.length) {
 		req.session.formErrors = errors;
@@ -35,9 +35,10 @@ router.post('/', async function (req, res) {
 	res.redirect('/add-institution');
 });
 
-function getInputErrors(name, field) {
+async function getInputErrors(name, field) {
 	let errors = [];
 
+	if (await medicalInstitutions.isNameTaken(name)) errors.push('Instituce již existuje.');
 	if (name.length > 255) errors.push('Jméno instituce nesmí být delší než 255 znaků.');
 	if (field.length > 255) errors.push('Zaměření nesmí být delší než 255 znaků.');
 
