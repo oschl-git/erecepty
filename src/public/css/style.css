@@ -1,0 +1,20 @@
+.error,
+.success {
+	font-weight: bold;
+	margin: 1rem;
+}
+
+.error h4,
+.success h4 {
+	margin: 1rem;
+}
+
+.error {
+	border: solid 2px red;
+	color: red;
+}
+
+.success {
+	border: solid 2px green;
+	color: red;
+}
