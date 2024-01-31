@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/_head'); %>
+  <title>eRecepty | přidat lékaře</title>
+</head>
+
+<body>
+  <%- include('./partials/_header'); %>
+  <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
+  <br><br>
+  <main>
+    <%- include('./partials/_formFeedback'); %>
+    <h2>Přidání nového lékaře</h2>
+    <% if (medicalInstitutionValues.length > 0) { %>
+    <form action="/add-doctor" method="post">
+
+      <label for="name">Jméno: </label>
+      <input type="text" name="name" id="name" required>
+      <br>
+
+      <label for="surname">Příjmení: </label>
+      <input type="text" name="surname" id="surname" required>
+      <br>
+
+      <label for="level">Funkce: </label>
+      <select name="level" id="level">
+        <% for (const value of levelEnumValues) { %>
+        <option value="<%= value %>" selected=1><%= value %></option>
+        <% } %>
+      </select>
+      <br>
+
+      <label for="medical_institution">Lékařská instituce: </label>
+      <select name="medical_institution" id="medical_institution">
+        <% for (const institution of medicalInstitutionValues) { %>
+        <option value="<%= institution['id'] %>"><%= institution['name'] %></option>
+        <% } %>
+      </select>
+      <br>
+
+      <label for="identifier">Identifikační číslo: </label>
+      <input type="number" name="identifier" id="identifier" required>
+      <br>
+
+      <br>
+      <button type="submit">+ Přidat záznam</button>
+    </form>
+    <% } else { %>
+    <div class="error">
+      <h4>Pro přidání lékaře musí existovat alespoň jedna lékařská instituce.</h4>
+    </div>
+    <% } %>
+  </main>
+  <%- include('./partials/_footer'); %>
+</body>
+
+</html>
