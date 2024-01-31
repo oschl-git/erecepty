@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
 
 async function query(sql, ...parameters) {
 	let result = await connection.promise().query(sql, parameters);
-	return result;
+	return result[0];
 }
 
 module.exports = {

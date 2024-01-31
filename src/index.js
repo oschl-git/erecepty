@@ -3,11 +3,15 @@ const dotenv = require('dotenv');
 const path = require('path');
 const loader = require('require-dir');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
 	secret: process.env.SECRET_KEY,

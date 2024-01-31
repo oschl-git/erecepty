@@ -8,11 +8,22 @@
 
 <body>
   <%- include('./partials/_header'); %>
+  <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
+  <br><br>
   <main>
-    <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
-    <br>
+    <%- include('./partials/_formFeedback'); %>
+    <form action="/add-institution" method="post">
 
+      <label for="name">Název instituce: </label>
+      <input type="text" name="name" id="name" required>
+      <br>
 
+      <label for=" field">Zaměření: </label>
+      <input type="field" name="field" id="field" required>
+      <br><br>
+
+      <button type="submit">+ Přidat záznam</button>
+    </form>
   </main>
   <%- include('./partials/_footer'); %>
 </body>

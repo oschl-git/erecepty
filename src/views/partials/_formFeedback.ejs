@@ -1,0 +1,16 @@
+<% if (successMessage) { %>
+<div>
+  <h4><%= successMessage %></h4>
+</div>
+<% } %>
+
+<% if (formErrors.length) { %>
+<div>
+  <h4>Chyba! Záznam nemohl být přidán z následujících důvodů:</h4>
+  <ul>
+    <% for (const error of formErrors) { %>
+    <li><%= error %></li>
+    <% } %>
+  </ul>
+</div>
+<% } %>
