@@ -3,7 +3,7 @@
 
 <head>
   <%- include('./partials/_head'); %>
-  <title>eRecepty | přidat lékařskou instituci</title>
+  <title>eRecepty | přidat lék</title>
 </head>
 
 <body>
@@ -12,15 +12,15 @@
   <br><br>
   <main>
     <%- include('./partials/_formFeedback'); %>
-    <h2>Přidání nové lékařské instituce</h2>
-    <form action="/add-institution" method="post">
+    <h2>Přidání nového léku</h2>
+    <form action="/add-medicine" method="post">
 
-      <label for="name">Název instituce: </label>
+      <label for="name">Název léku: </label>
       <input type="text" name="name" id="name" required>
       <br>
 
-      <label for="field">Zaměření: </label>
-      <input type="field" name="field" id="field" required>
+      <label for="price">Cena: </label>
+      <input type="number" step=".01" name="price" id="price" required>
       <br><br>
 
       <button type="submit">+ Přidat záznam</button>

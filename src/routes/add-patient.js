@@ -41,6 +41,8 @@ async function getInputErrors(name, surname, phone_number, identity_number) {
 
 	if (name.length > 255) errors.push('Jméno instituce nesmí být delší než 255 znaků.');
 	if (surname.length > 255) errors.push('Příjmení nesmí být delší než 255 znaků.');
+	if (phone_number.length > 255) errors.push('Telefonní číslo nesmí být delší než 255 znaků.');
+	if (identity_number.length > 255) errors.push('Rodné číslo nesmí být delší než 255 znaků.');
 	if (await phoneNumbers.isPhoneNumberTaken(phone_number)) errors.push('Telefonní číslo je již zabrané.');
 
 	return errors;
