@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/_head'); %>
+  <title>eRecepty | vystavit nový erecept</title>
+</head>
+
+<body>
+  <%- include('./partials/_header'); %>
+  <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
+  <br><br>
+  <main>
+    <%- include('./partials/_formFeedback'); %>
+    <h2>Vystavení nového ereceptu</h2>
+    <form action="/add-prescription" method="post">
+
+      <label for="doctor">Vystavující lékař: </label>
+      <select name="doctor" id="doctor" required>
+        <% for (const doctor of doctorValues) { %>
+        <option value="<%= doctor['id'] %>"><%= doctor['name'] + ' ' + doctor['surname'] + ' (i. č. ' + doctor['identifier'] + ')'%></option>
+        <% } %>
+      </select>
+      <br>
+
+      <label for="patient">Určeno pro pacienta: </label>
+      <select name="patient" id="patient" required>
+        <% for (const patient of patientValues) { %>
+        <option value="<%= patient['id'] %>"><%= patient['name'] + ' ' + patient['surname'] + ' (r. č. ' + patient['identity_number'] + ')'%></option>
+        <% } %>
+      </select>
+      <br>
+
+      <label for="expires">Datum expirace: </label>
+      <input type="date" name="expires" id="expires" required>
+      <br>
+
+      <h4>Léky:</h4>
+      <div id="medicine-container"></div>
+      <button type="button" id="add-medicine-button">+ Přidat další lék</button><br><br>
+
+      <button type="submit">+ Vystavit recept</button>
+    </form>
+  </main>
+  <%- include('./partials/_footer'); %>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const medicineContainer = document.getElementById('medicine-container');
+    const addMedicineButton = document.getElementById('add-medicine-button');
+    const medicineValues = JSON.parse('<%- JSON.stringify(medicineValues); %>');
+
+    function createNewMedicineSelect() {
+      const newSelect = document.createElement('select');
+
+      newSelect.name = `medicine[]`;
+      newSelect.classList.add('medicine-select');
+
+      for (const medicine of medicineValues) {
+        const newOption = document.createElement('option');
+
+        newOption.value = medicine['id'];
+        newOption.textContent = medicine['name'];
+
+        newSelect.appendChild(newOption);
+      }
+
+      const deleteButton = document.createElement('button');
+
+      deleteButton.textContent = 'X';
+
+      deleteButton.addEventListener('click', (event) => {
+        if (document.getElementsByClassName('medicine-select').length > 1) {
+          medicineContainer.removeChild(newSelect.parentElement);
+        }
+
+        event.preventDefault();
+      });
+
+      const inputContainer = document.createElement('div');
+
+      inputContainer.appendChild(newSelect);
+      inputContainer.appendChild(deleteButton);
+
+      medicineContainer.appendChild(inputContainer);
+    }
+
+    addMedicineButton.addEventListener('click', createNewMedicineSelect);
+
+    createNewMedicineSelect();
+  });
+</script>
+
+</html>

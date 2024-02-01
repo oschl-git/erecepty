@@ -19,8 +19,13 @@ async function isIdentifierTaken(identifier) {
 	return result.length > 0;
 }
 
+async function getAllNamesAndIDs() {
+	return await query('select name, surname, identifier, id from doctors;');
+}
+
 module.exports = {
 	addNewDoctor,
 	getPossibleLevelEnumValues,
 	isIdentifierTaken,
+	getAllNamesAndIDs,
 };

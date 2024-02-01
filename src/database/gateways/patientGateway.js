@@ -23,7 +23,12 @@ async function addNewPatient(name, surname, phoneNumberId, identityNumber) {
 	);
 };
 
+async function getAllNamesAndIDs() {
+	return await query('select name, surname, identity_number, id from patients;');
+}
+
 module.exports = {
 	addPatientTransaction,
 	addNewPatient,
+	getAllNamesAndIDs,
 };

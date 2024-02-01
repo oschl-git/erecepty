@@ -1,5 +1,8 @@
 const express = require('express');
 const prescriptions = require('../database/gateways/prescriptionGateway');
+const medicine = require('../database/gateways/medicineGateway');
+const doctors = require('../database/gateways/doctorGateway');
+const patients = require('../database/gateways/patientGateway');
 
 var router = express.Router();
 
@@ -13,6 +16,9 @@ router.get('/', async function (req, res) {
 	res.render('add-prescription', {
 		formErrors: formErrors,
 		successMessage: successMessage,
+		medicineValues: await medicine.getAllNamesAndIDs(),
+		doctorValues: await doctors.getAllNamesAndIDs(),
+		patientValues: await patients.getAllNamesAndIDs(),
 	});
 });
 

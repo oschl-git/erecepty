@@ -24,11 +24,11 @@ function beginTransaction() {
 	connection.beginTransaction();
 }
 
-async function commit() {
+function commit() {
 	connection.commit();
 }
 
-async function rollback() {
+function rollback() {
 	connection.rollback();
 }
 

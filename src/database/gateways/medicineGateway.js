@@ -9,7 +9,12 @@ async function isNameTaken(name) {
 	return result.length > 0;
 }
 
+async function getAllNamesAndIDs() {
+	return await query('select name, id from medicine;');
+}
+
 module.exports = {
 	addNewMedicine,
-	isNameTaken
+	isNameTaken,
+	getAllNamesAndIDs,
 };
