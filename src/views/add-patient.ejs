@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/_head'); %>
+  <title>eRecepty | přidat pacienta</title>
+</head>
+
+<body>
+  <%- include('./partials/_header'); %>
+  <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
+  <br><br>
+  <main>
+    <%- include('./partials/_formFeedback'); %>
+    <h2>Přidání pacienta</h2>
+    <form action="/add-patient" method="post">
+
+      <label for="name">Jméno: </label>
+      <input type="text" name="name" id="name" required>
+      <br>
+
+      <label for="surname">Příjmení: </label>
+      <input type="text" name="surname" id="surname" required>
+      <br>
+
+      <label for="phone_number">Telefonní číslo: </label>
+      <input type="tel" name="phone_number" id="phone_number" required>
+      <br>
+
+      <label for="surname">Rodné číslo: </label>
+      <input type="text" name="identity_number" id="identity_number" required>
+      <br>
+
+      <button type="submit">+ Přidat záznam</button>
+    </form>
+  </main>
+  <%- include('./partials/_footer'); %>
+</body>
+
+</html>

@@ -15,6 +15,27 @@ async function query(sql, ...parameters) {
 	return result[0];
 }
 
+async function queryInsertReturnInsertedId(sql, ...parameters) {
+	result = await query(sql, ...parameters);
+	return result.insertId;
+}
+
+function beginTransaction() {
+	connection.beginTransaction();
+}
+
+async function commit() {
+	connection.commit();
+}
+
+async function rollback() {
+	connection.rollback();
+}
+
 module.exports = {
-	query
+	query,
+	queryInsertReturnInsertedId,
+	beginTransaction,
+	commit,
+	rollback,
 };

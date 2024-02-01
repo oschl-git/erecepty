@@ -25,7 +25,7 @@
       <br>
 
       <label for="level">Funkce: </label>
-      <select name="level" id="level">
+      <select name="level" id="level" required>
         <% for (const value of levelEnumValues) { %>
         <option value="<%= value %>" selected=1><%= value %></option>
         <% } %>
@@ -33,7 +33,7 @@
       <br>
 
       <label for="medical_institution">Lékařská instituce: </label>
-      <select name="medical_institution" id="medical_institution">
+      <select name="medical_institution" id="medical_institution" required>
         <% for (const institution of medicalInstitutionValues) { %>
         <option value="<%= institution['id'] %>"><%= institution['name'] %></option>
         <% } %>
