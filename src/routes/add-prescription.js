@@ -25,31 +25,14 @@ router.get('/', async function (req, res) {
 router.post('/', async function (req, res) {
 	const data = req.body;
 
-	console.log(data);
-	return;
-
-	const errors = await getInputErrors(data.user_id, data.patient_id, data.created, data.expires, data.fulfilled);
-
-	if (errors.length) {
-		req.session.formErrors = errors;
-	} else {
-		try {
-			// TODO: save to database here
-			req.session.successMessage = 'Záznam byl úspěšně přidán.';
-		} catch {
-			req.session.formErrors = ['Vyskytla se chyba při zápisu do databáze.'];
-		}
+	try {
+		await prescriptions.addPrescriptionTransaction(data.doctor, data.patient, data.expires, false, data.medicine);
+		req.session.successMessage = 'Záznam byl úspěšně přidán.';
+	} catch {
+		req.session.formErrors = ['Vyskytla se chyba při zápisu do databáze.'];
 	}
 
 	res.redirect('/add-prescription');
 });
-
-async function getInputErrors(userId, patientId, created, expires, fulfilled) {
-	let errors = [];
-
-	// TODO: Check errors here :)
-
-	return errors;
-}
 
 module.exports = router; 
