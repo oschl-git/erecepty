@@ -74,7 +74,7 @@ CREATE TABLE `prescriptions` (
   `doctors_id` int NOT NULL,
   `patients_id` int NOT NULL,
   `created` datetime NOT NULL,
-  `expires` datetime NOT NULL,
+  `expires` date NOT NULL,
   `fulfilled` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `doctors_id` (`doctors_id`),
@@ -97,4 +97,18 @@ CREATE TABLE `prescriptions_medicine_map` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
 
 
--- 2024-02-01 15:57:41
+DROP VIEW IF EXISTS `v_medicine_prescriptions_relations`;
+CREATE TABLE `v_medicine_prescriptions_relations` (`id_prescription` int, `name` varchar(255), `price` decimal(20,4));
+
+
+DROP VIEW IF EXISTS `v_prescription_report`;
+CREATE TABLE `v_prescription_report` (`id` int, `doctor_name` varchar(255), `doctor_surname` varchar(255), `patient_name` varchar(255), `patient_surname` varchar(255), `created` datetime, `expires` date, `fulfilled` tinyint(1));
+
+
+DROP TABLE IF EXISTS `v_medicine_prescriptions_relations`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_medicine_prescriptions_relations` AS select `prescriptions_medicine_map`.`id_prescription` AS `id_prescription`,`medicine`.`name` AS `name`,`medicine`.`price` AS `price` from (`prescriptions_medicine_map` left join `medicine` on((`prescriptions_medicine_map`.`id_medicine` = `medicine`.`id`)));
+
+DROP TABLE IF EXISTS `v_prescription_report`;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_prescription_report` AS select `prescriptions`.`id` AS `id`,`doctors`.`name` AS `doctor_name`,`doctors`.`surname` AS `doctor_surname`,`patients`.`name` AS `patient_name`,`patients`.`surname` AS `patient_surname`,`prescriptions`.`created` AS `created`,`prescriptions`.`expires` AS `expires`,`prescriptions`.`fulfilled` AS `fulfilled` from ((`prescriptions` left join `doctors` on((`prescriptions`.`doctors_id` = `doctors`.`id`))) left join `patients` on((`prescriptions`.`patients_id` = `patients`.`id`)));
+
+-- 2024-02-02 20:12:08
