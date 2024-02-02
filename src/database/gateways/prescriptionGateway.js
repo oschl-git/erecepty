@@ -28,8 +28,47 @@ async function addNewPrescriptionMedicineRelation(prescriptionId, medicineId) {
 	);
 }
 
+async function getPrescriptionReportObject() {
+	let report = {};
+
+	let prescriptions = await getPrescriptionReportView();
+	for (const prescription of prescriptions) {
+		report[prescription.id] = {
+			doctorName: prescription.doctor_name,
+			doctorSurname: prescription.doctor_surname,
+			patientName: prescription.patient_name,
+			patientSurname: prescription.patient_surname,
+			createdAt: prescription.created,
+			expiresAt: prescription.expires,
+			fulfilled: prescription.fulfilled,
+			medicine: [],
+		};
+	}
+
+	let medicine = await getMedicinePrescriptionsRelationsView();
+	for (const med of medicine) {
+		report[med.id_prescription].medicine.push({
+			name: med.name,
+			price: med.price,
+		});
+	}
+
+	return report;
+}
+
+async function getPrescriptionReportView() {
+	return await query('select * from v_prescription_report;');
+}
+
+async function getMedicinePrescriptionsRelationsView() {
+	return await query('select * from v_medicine_prescriptions_relations;');
+}
+
 module.exports = {
 	addPrescriptionTransaction,
 	addNewPerscription,
 	addNewPrescriptionMedicineRelation,
+	getPrescriptionReportObject,
+	getPrescriptionReportView,
+	getMedicinePrescriptionsRelationsView,
 };

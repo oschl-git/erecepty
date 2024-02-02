@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./partials/_head'); %>
+  <title>eRecepty | report vystavených receptů</title>
+</head>
+
+<body>
+  <%- include('./partials/_header'); %>
+  <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
+  <br><br>
+  <h2>Report vystavených ereceptů</h2>
+  <button onClick="window.print()">Vytisknout report</button>
+  <main class="printableArea">
+    <header>
+      <h2>Vystavené erecepty:</h2>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>Vystavující lékař</th>
+          <th>Určeno pro pacienta</th>
+          <th>Čas vystavení</th>
+          <th>Datum expirace</th>
+          <th>Byl vyzvednutý?</th>
+          <th>Léky</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (const prescriptionId in report) { %>
+        <tr>
+          <td><%= report[prescriptionId].doctorName + ' ' + report[prescriptionId].doctorSurname %></td>
+          <td><%= report[prescriptionId].patientName + ' ' + report[prescriptionId].patientSurname %></td>
+          <td><%= new Date(report[prescriptionId].createdAt).toLocaleString('cs-CZ') %></td>
+          <td><%= new Date(report[prescriptionId].expiresAt).toLocaleDateString('cs-CZ') %></td>
+          <td><%= report[prescriptionId].fulfilled ? 'Ano' : 'Ne' %></td>
+          <td>
+            <ul>
+              <% for (const med of report[prescriptionId].medicine) { %>
+              <li><%= med.name + ' (' + Number(med.price).toFixed(2) + ' Kč)'  %></li>
+              <% } %>
+            </ul>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <footer>
+      Report byl vytvořený <%= new Date().toLocaleString('cs-CZ') %>.
+    </footer>
+  </main>
+  <%- include('./partials/_footer'); %>
+</body>
+
+</html>
