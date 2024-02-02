@@ -13,6 +13,7 @@
   <main>
     <%- include('./partials/_formFeedback'); %>
     <h2>Vystavení nového ereceptu</h2>
+    <% if (unsatisfiedPrerequisites.length <= 0) { %>
     <form action="/add-prescription" method="post">
 
       <label for="doctor">Vystavující lékař: </label>
@@ -41,6 +42,15 @@
 
       <button type="submit">+ Vystavit recept</button>
     </form>
+    <% } else { %>
+    <div class="error">
+      <ul>
+        <% for (const problem of unsatisfiedPrerequisites) { %>
+        <li><%= problem %></li>
+        <% } %>
+      </ul>
+    </div>
+    <% } %>
   </main>
   <%- include('./partials/_footer'); %>
 </body>

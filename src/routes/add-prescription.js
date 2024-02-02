@@ -13,12 +13,19 @@ router.get('/', async function (req, res) {
 	const successMessage = req.session.successMessage ?? null;
 	delete req.session.successMessage;
 
+	let medicineValues = await medicine.getAllNamesAndIDs();
+	let doctorValues = await doctors.getAllNamesAndIDs();
+	let patientValues = await patients.getAllNamesAndIDs();
+
+	let unsatisfiedPrerequisites = getUnsatisfiedPrerequisites(medicineValues, doctorValues, patientValues);
+
 	res.render('add-prescription', {
 		formErrors: formErrors,
 		successMessage: successMessage,
-		medicineValues: await medicine.getAllNamesAndIDs(),
-		doctorValues: await doctors.getAllNamesAndIDs(),
-		patientValues: await patients.getAllNamesAndIDs(),
+		medicineValues: medicineValues,
+		doctorValues: doctorValues,
+		patientValues: patientValues,
+		unsatisfiedPrerequisites: unsatisfiedPrerequisites,
 	});
 });
 
@@ -34,5 +41,15 @@ router.post('/', async function (req, res) {
 
 	res.redirect('/add-prescription');
 });
+
+function getUnsatisfiedPrerequisites(medicineValues, doctorValues, patientValues) {
+	let problems = [];
+
+	if (!medicineValues.length) problems.push('Pro vystavení ereceptu musí existovat alespoň jeden lék.');
+	if (!doctorValues.length) problems.push('Pro vystavení ereceptu musí existovat alespoň jeden lékař.');
+	if (!patientValues.length) problems.push('Pro vystavení ereceptu musí existovat alespoň jeden pacient.');
+
+	return problems;
+}
 
 module.exports = router; 

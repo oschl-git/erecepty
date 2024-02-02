@@ -11,6 +11,7 @@
   <a href="/">&lt;&lt; zpět na domovskou obrazovku</a>
   <br><br>
   <h2>Report vystavených ereceptů</h2>
+  <% if (Object.keys(report).length > 0) { %>
   <button onClick="window.print()">Vytisknout report</button>
   <main class="printableArea">
     <header>
@@ -50,6 +51,14 @@
       Report byl vytvořený <%= new Date().toLocaleString('cs-CZ') %>.
     </footer>
   </main>
+  <% } else { %>
+  <div class="error">
+    <ul>
+      <li>Nejsou vystavené žádné erecepty.</li>
+    </ul>
+  </div>
+  <% } %>
+
   <%- include('./partials/_footer'); %>
 </body>
 
