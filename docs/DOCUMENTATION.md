@@ -64,7 +64,7 @@ Communication with the database is done using the [table gateway pattern](https:
 This project took me a few days and several hours to complete and I'm not quite sure I'm all too happy about that. Have I learnt anything? Not much, I think. I've applied knowledge I've previously obtained, most of it not at school mind you, and used up a lot of my time to do this instead of doing other, more productive tasks, like studying for maturita, working, or studying for university entrance exams.
 
 As always, however, I tried to find things to learn. In particular, the following aspects of this project were new to me:
-- MySQL. I've never worked with it before. Unsurprisingly, it works almost exactly as any other database.
+- MySQL. I've never worked with it before. Unsurprisingly, it works almost exactly as any other RDBMS.
 - Getting JSON file contents with NodeJS and the Multer library. This was the most painful part of this project: I got stuck on this for like an hour because I'm stupid and can't read documentation properly, apparently.
 
 ...and that's about it.
