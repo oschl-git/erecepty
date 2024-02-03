@@ -1,0 +1,30 @@
+[
+	{
+		"doctorId": 1,
+		"patientId": 2,
+		"expires": "2024-02-10",
+		"medicine": [
+			1,
+			5,
+			4,
+			2
+		]
+	},
+	{
+		"doctorId": 2,
+		"patientId": 3,
+		"expires": "2024-02-12",
+		"medicine": [
+			5
+		]
+	},
+	{
+		"doctorId": 3,
+		"patientId": 2,
+		"expires": "2024-02-11",
+		"medicine": [
+			1,
+			4
+		]
+	}
+]
