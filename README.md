@@ -32,7 +32,7 @@ This app is a school project made during my fourth year at SPŠE Ječná. It isn
 - JavaScript with NodeJS v20.10.0
 - MySQL 8.0.36
 - Visual Studio Code
-### Node packages:
+#### Node packages:
 - body-parser 1.20.2
 - dotenv 16.4.1
 - ejs 3.1.9
