@@ -1,3 +1,7 @@
+/**
+ * Handles the add-patient route.
+ */
+
 const express = require('express');
 const patients = require('../database/gateways/patientGateway');
 const phoneNumbers = require('../database/gateways/phoneNumberGateway');

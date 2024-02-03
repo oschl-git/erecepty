@@ -1,3 +1,7 @@
+/**
+ * Allows access to the doctors database table
+ */
+
 const { query } = require('../connection');
 
 async function addNewDoctor(name, surname, level, id_medical_institution, identifier) {

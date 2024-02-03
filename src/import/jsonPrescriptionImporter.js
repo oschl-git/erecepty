@@ -1,3 +1,7 @@
+/**
+ * Handles importing prescription data from JSON
+ */
+
 const prescriptions = require('../database/gateways/prescriptionGateway');
 
 async function importPrescriptionsFromJSON(json) {

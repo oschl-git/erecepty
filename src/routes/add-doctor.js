@@ -1,3 +1,7 @@
+/**
+ * Handles the add-doctor route.
+ */
+
 const express = require('express');
 const doctors = require('../database/gateways/doctorGateway');
 const medicalInstitutions = require('../database/gateways/medicalInstitutionGateway');

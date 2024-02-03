@@ -1,3 +1,7 @@
+/**
+ * Allows access to the medical_institutions database table
+ */
+
 const { query } = require('../connection');
 
 async function addNewInstitution(name, field) {

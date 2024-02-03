@@ -1,3 +1,7 @@
+/**
+ * Handles the import-prescriptions route.
+ */
+
 const express = require('express');
 const multer = require('multer');
 const importer = require('../import/jsonPrescriptionImporter');

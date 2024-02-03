@@ -1,3 +1,7 @@
+/**
+ * Allows access to the medicine database table
+ */
+
 const { query } = require('../connection');
 
 async function addNewMedicine(name, price) {

@@ -1,3 +1,7 @@
+/**
+ * Allows access to the phone_numbers database table
+ */
+
 const { query, queryInsertReturnInsertedId } = require('../connection');
 
 async function addNewPhoneNumberReturnInsertedId(phoneNumber) {

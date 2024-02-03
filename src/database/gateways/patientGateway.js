@@ -1,3 +1,7 @@
+/**
+ * Allows access to the patients database table
+ */
+
 const { query, beginTransaction, commit, rollback } = require('../connection');
 const phoneNumbers = require('./phoneNumberGateway');
 

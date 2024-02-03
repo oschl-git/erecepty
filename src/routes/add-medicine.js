@@ -1,3 +1,7 @@
+/**
+ * Handles the add-medicine route.
+ */
+
 const express = require('express');
 const medicine = require('../database/gateways/medicineGateway');
 

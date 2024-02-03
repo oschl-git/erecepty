@@ -1,3 +1,7 @@
+/**
+ * Allows access to the prescriptions database table
+ */
+
 const { query, queryInsertReturnInsertedId, beginTransaction, commit, rollback } = require('../connection');
 
 async function addPrescriptionTransaction(doctorId, patientId, expires, fulfilled, medicine) {

@@ -1,3 +1,7 @@
+/**
+ * Handles the add-institution route.
+ */
+
 const express = require('express');
 const medicalInstitutions = require('../database/gateways/medicalInstitutionGateway');
 

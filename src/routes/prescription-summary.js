@@ -1,3 +1,7 @@
+/**
+ * Handles the prescription-summary route.
+ */
+
 const express = require('express');
 const prescriptions = require('../database/gateways/prescriptionGateway');
 
