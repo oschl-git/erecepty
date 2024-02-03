@@ -4,7 +4,7 @@ const medicine = require('../database/gateways/medicineGateway');
 const doctors = require('../database/gateways/doctorGateway');
 const patients = require('../database/gateways/patientGateway');
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/', async function (req, res) {
 	const formErrors = req.session.formErrors ?? [];

@@ -1,7 +1,7 @@
 const express = require('express');
 const medicalInstitutions = require('../database/gateways/medicalInstitutionGateway');
 
-var router = express.Router();
+const router = express.Router();
 
 router.get('/', async function (req, res) {
 	const formErrors = req.session.formErrors ?? [];

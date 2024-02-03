@@ -24,7 +24,7 @@ app.use(session({
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-var routes = loader('./routes');
+const routes = loader('./routes');
 for (const route in routes) {
 	const path = route != 'homepage' ? route : '';
 	app.use('/' + path, routes[route]);

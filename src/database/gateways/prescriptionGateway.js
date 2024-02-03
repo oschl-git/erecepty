@@ -64,6 +64,26 @@ async function getMedicinePrescriptionsRelationsView() {
 	return await query('select * from v_medicine_prescriptions_relations;');
 }
 
+async function addPrescriptionsFromJsonArray(data) {
+	let errors = [];
+
+	beginTransaction();
+
+	for (const prescription of data) {
+		try {
+			let prescriptionId = await addNewPerscription(prescription.doctorId, prescription.patientId, prescription.expires, false);
+			for (const med of prescription.medicine) await addNewPrescriptionMedicineRelation(prescriptionId, med);
+		} catch (e) {
+			errors.push('Chyba zapisování do databáze při importu: ' + e.message);
+		}
+	}
+
+	if (errors.length) rollback();
+	else commit();
+
+	return errors;
+}
+
 module.exports = {
 	addPrescriptionTransaction,
 	addNewPerscription,
@@ -71,4 +91,5 @@ module.exports = {
 	getPrescriptionReportObject,
 	getPrescriptionReportView,
 	getMedicinePrescriptionsRelationsView,
+	addPrescriptionsFromJsonArray,
 };
