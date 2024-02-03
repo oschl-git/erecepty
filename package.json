@@ -1,7 +1,7 @@
 {
   "name": "erecepty",
   "version": "1.0.0",
-  "description": "A theoretical government application for issuing prescriptions",
+  "description": "A theoretical government application for issuing digital prescriptions",
   "main": "src/index.js",
   "scripts": {
     "start": "node ."
