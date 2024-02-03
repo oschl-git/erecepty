@@ -1,4 +1,8 @@
+-- eRecepty database export
+-- made by Ondřej Schlaichert
 -- MySQL 8.0.36
+
+START TRANSACTION;
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -181,5 +185,7 @@ CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_medicine_prescriptions_r
 
 DROP TABLE IF EXISTS `v_prescription_report`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_prescription_report` AS select `prescriptions`.`id` AS `id`,`doctors`.`name` AS `doctor_name`,`doctors`.`surname` AS `doctor_surname`,`patients`.`name` AS `patient_name`,`patients`.`surname` AS `patient_surname`,`prescriptions`.`created` AS `created`,`prescriptions`.`expires` AS `expires`,`prescriptions`.`fulfilled` AS `fulfilled` from ((`prescriptions` left join `doctors` on((`prescriptions`.`doctors_id` = `doctors`.`id`))) left join `patients` on((`prescriptions`.`patients_id` = `patients`.`id`)));
+
+COMMIT;
 
 -- 2024-02-02 20:36:02
