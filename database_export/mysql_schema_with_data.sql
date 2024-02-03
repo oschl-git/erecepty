@@ -1,4 +1,4 @@
--- eRecepty database export
+-- eRecepty database schema with testing data export
 -- made by Ondřej Schlaichert
 -- MySQL 8.0.36
 
