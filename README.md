@@ -9,9 +9,21 @@ The application is written in JavaScript using **NodeJS v20.10.0**, so you need 
 1. Clone this GitHub repo to a folder on your machine.
 2. Run `npm install` to install all packages that are needed as dependencies.
 3. Create a MySQL database using the provided .sql scripts. Use [this one](mysql-schema.sql) to create an empty database, or [this one](mysql-schema-with-data.sql) to create a database with some testing data already in it.
-4. Modify the [.env](.env) file to include the correct database authentication details. Feel free to modify other settings to suit your needs as well.
+4. Add an .env file to the project directory in the following format:
+```
+PORT=<server port>
+SECRET_KEY=<secret key>
+
+# Database connection
+DB_HOST=<database host>
+DB_USER=<database username>
+DB_PASSWORD=<database password>
+DB_NAME=<database name>
+```
+Make sure to include the correct database authentication details.
+
 5. Start the application by running `npm run start` or `node .` in the project folder.
-6. Congratulations! The app is now running on the port specified in your [.env](.env) file (or 3000 by default). Have a celebratory chocolate cake.
+6. Congratulations! The app is now running on the port specified in your .env file (or 3000 by default). Have a celebratory chocolate cake.
 
 ## Why?
 This app is a school project made during my fourth year at SPŠE Ječná. It isn't that bad of an assignment this time.
