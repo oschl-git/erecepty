@@ -13,6 +13,15 @@ To protect my privacy, I have chosen to not include any contact details.
 ### Dependencies:
 - **NodeJS v20.10.0** or compatible
 - **MySQL 8.0.36** or compatible
+#### Node packages:
+- body-parser 1.20.2
+- dotenv 16.4.1
+- ejs 3.1.9
+- express 4.18.2
+- express-session 1.18.0
+- multer 1.4.5-lts.1
+- mysql2 3.9.1
+- require-dir 1.2.0
 ### Steps:
 For a step by step guide how to start and run the application, please refer to the [README](../README.md).
 ### Using the application:
